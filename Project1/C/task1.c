@@ -39,17 +39,14 @@
 
      // Cycle for myChar
      ptr = (unsigned char *)&myChar;
-
      printf("\nExamining char (size: %lu bytes):\n", sizeof(char));
-
      for(int i = 0; i < sizeof(char); i++) {
         printf("Byte %d: %02X\n", i, ptr[i]);
      }
 
+     // cycle for short
      ptr = (unsigned char * )&myShort;
-
      printf("\nExamining short (size: %lu bytes):\n", sizeof(short));
-
      for(int i = 0; i < sizeof(short); i++) {
         printf("Byte %d: %02X\n", i, ptr[i]);
      }

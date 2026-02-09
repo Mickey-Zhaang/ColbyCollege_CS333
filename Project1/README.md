@@ -58,41 +58,73 @@ gcc -o task1 task1.c
 
 **Output:**
 
-**1.a** ![Screenshot of c task 1](assets/task1_output.png)
+**1.a.**
 
-**1.b** Is the machine you are using a big-endian or little-endian machine? --> little endian
+![Screenshot of c task 1](assets/task1_output.png)
 
-**1.c** How does the program output tell you? --> the program prints out the least significant first and increases from there
+**1.b.** Is the machine you are using a big-endian or little-endian machine? --> little endian
 
-**2.a**
-**2.b**
-**2.c**
+**1.c.** How does the program output tell you? --> the program prints out the least significant first and increases from there
 
 ### Task 2
 
-... Other C tasks are there ...
+```bash
+//compile
+gcc -o task2 task2.c
 
-_Please note that you don't need Part II for Project 1 as it doesn't require you to write any programs. However, you are expected to include Part II for future projects to illustrate how to compile and run your selected language programs and the outputs you get from them._
+//run
+./task2.exe
+```
 
-## Part II - JS
+**2.a.**
 
-###task 1
-**Compile:**
+![Screenshot of c task 2](assets/task2_output.png)
 
-**Run:**
+**2.b.** The layout of the stack seems to be the most recently pushed items being closer to index 0. It reads backwards which makes sense because we've established that the machine is little endian
 
-**Output:**
+**2.c.** at indicies 8 and 9 it's 0x0032 I have no idea what that is. There's also other memoryt addresses after our variable inits. Indicated by the 0x000000... sequence.
 
-###task 2
-**Compile:**
+**2.d.** Yes, I initiated 3: int, long, short. We found them from indicies 10-19 with myInt starting at index 19 (sequence of AAs) and working backwards towards myShort (sequence of CCs) towards index 10
 
-**Run:**
+![Screenshot of c task 3](assets/task2_ev.png)
 
-**Output:**
+### Task 3
 
-... Other selected language tasks are there
+```bash
+//compile
+gcc -o task3 task3.c
 
-_Please have a description of each extension you undertook_
+//run
+./task3.exe
+```
+
+**3.a**
+
+![Screenshot of c task 3](assets/task3_output.png)
+
+**3.b** The activity shows that once I run my .exe file, the program allocates quite a bit of memory. The loop is continuously reserving space without freeing itself from the previous space so we get memory leakage. With free(), it's essentially always freeing up the space it used on each iteration.
+
+### Task 4
+
+**4.a** I'd say 8 bytes makes sense since our original was 7 bytes and we need 1 extra for padding. The 12 bytes caught me off guard for when we moved the int var in the middle.
+
+![Screenshot of c task 3](assets/task4_ev.png)
+
+![Screenshot of c task 3](assets/task4_output.png)
+
+**4.b** for structA and structC, the gaps were at the ends to ensure that the final struct was padded to 8 bytes. The major gap was in structB where the number of bytes went up to 12
+
+### Task 5
+
+**5.a** A string of size 13 chars => 12 chars might bet he cut off
+
+![Screenshot of c task 3](assets/test5_output_bad.png)
+
+**5.b**
+
+![Screenshot of c task 3](assets/test5_output_dump.png)
+
+**5.c** Upon closer inspection. The name field in the struct Account only holds 10 characters all of size 1 so the indices 0-9 show the name of our account. Since integers need to start on a mutliple of 4 because of their size constraint, the machine padded indicies 10-11 with the overflow after the 9th index. Then the int is recorded from indicies 12-15 0x00000033 which is 51 => same as the balance which means that the balance is carryong over the extra bits from name.
 
 ## Extensions
 
