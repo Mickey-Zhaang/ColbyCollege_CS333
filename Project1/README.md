@@ -6,39 +6,6 @@
 
 **Google Sites Report: https://sites.google.com/colby.edu/mickeys-cs333/home**
 
-## Directory Layout:
-
-```
-proj01/
-|
-|__/assets/
-|  |
-|__|__|ctask1.png
-|__|__|ctask2.png
-|__|__|ctask3.png
-|__|__|ctask4.png
-|__|__|ctask5.png
-|
-|__/C/
-|  |
-|  |__/task1.c
-|  |__/task2.c
-|  |__/task3.c
-|  |__/task4.c
-|  |__/task5.c
-|
-|__/JS/
-|  |
-|  |__/task1.js
-|  |__/task2.js
-|
-|__/RUST/
-|  |
-|__|__/task1.sql
-|__|__/task2.sql
-
-```
-
 ## OS and C compiler
 
 OS: Windows
@@ -128,20 +95,54 @@ gcc -o task3 task3.c
 
 ## Extensions
 
-###extension 1
-**Description**
+### Extension 1: Making Task 5 more Robust
 
 **Compile:**
 
-**Run:**
+```bash
+//compile
+gcc -o ex1 extension1.c
+
+//run
+./ex1.exe
+```
+
+**Description**
+
+Simply cut off input in scanf to limit to specified size char[10]. Thus preventing overflow as shown below.
 
 **Output:**
 
-###extension 2
-**Description**
+![Screenshot of c task 3](assets/ext1_output.png)
+
+### Extension 2
 
 **Compile:**
 
-**Run:**
+```bash
+//compile
+gcc -o ex2 extension2.c
+
+//run
+./ex2.exe
+```
+
+**Description**
+
+1. freeing a pointer after already freeing it once throws a runtime error due to trying to free space that isn't taken up in the first palce (because it was already freed)
+
+2. I think division by 0 is the most common run time error in any language
+
+3. Endless looping/Recursing on Self is the a classic run time error but that's where the famous "Stack Overflow" came from apparently
 
 **Output:**
+
+1.  ![Screenshot of c task 3](assets/ext2_example1.png)
+
+2.  ![Screenshot of c task 3](assets/ext2_example2.png)
+
+3.  ![Screenshot of c task 3](assets/ext2_example3.png)
+
+### Extension 3: Fifth Language
+
+Websie Link: https://sites.google.com/colby.edu/mickeys-cs333/home/project-1
