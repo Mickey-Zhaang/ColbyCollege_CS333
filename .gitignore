@@ -1,3 +1,17 @@
+# IDE / editor
 .vscode
+
+# Node / TypeScript (Project2/TS)
 node_modules
 dist
+
+# Flex (Project2/C) — generated from .yy
+lex.yy.c
+
+# C build outputs
+*.exe
+*.o
+a.out
+
+# Rust (Project2/RUST)
+target/

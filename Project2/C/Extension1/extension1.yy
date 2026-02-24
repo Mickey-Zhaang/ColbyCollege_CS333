@@ -13,7 +13,6 @@ static size_t comment_len;
 %option noyywrap
 %x COMMENT
 
-
 %%
 
   /* ----- Whitespace: skip ----- */
