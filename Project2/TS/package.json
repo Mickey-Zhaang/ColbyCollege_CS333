@@ -1,0 +1,12 @@
+{
+  "name": "project2-ts",
+  "private": true,
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/test.js",
+    "run": "npm run build && npm run start"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}

@@ -1,25 +1,47 @@
 /*
- * Task 4: Clite lexer.
- * Output: one line per token: Integer, Float, Keyword, Identifier,
- * Assignment, Comparison, Operator, Open-bracket, Close-bracket,
- * Open-paren, Close-paren. Ignores whitespace and comments.
+ * Extension 1: Clite lexer but with comments.
  */
 
 %{
 #include <stdio.h>
 #include <stdlib.h>
+#define COMMENT_BUF_MAX 4096
+static char comment_buf[COMMENT_BUF_MAX];
+static size_t comment_len;
 %}
+
+%option noyywrap
+%x COMMENT
+
 
 %%
 
   /* ----- Whitespace: skip ----- */
 [ \t\n\r]+   { /* skip */ }
 
-  /* ----- Line comment: skip ----- */
-"//"[^\n]*   { /* skip */ }
+  /* ----- Line comment: print with indicator ----- */
+"//"[^\n]*   { printf("Line-comment: %s\n", yytext); }
 
-  /* ----- Block comment: skip ----- */
-"/*"([^*]|"*"[^/])*"*"+"/"  { /* skip */ }
+  /* ----- Block comment: print with indicator (closed); or enter COMMENT for unclosed ----- */
+"/*"([^*]|"*"[^/])*"*"+"/"  { printf("Block-comment: %s\n", yytext); }
+"/*"  { comment_len = 0; comment_buf[0] = '\0'; BEGIN(COMMENT); }
+
+<COMMENT>"*/"   {
+    printf("Block-comment: /*%s*/\n", comment_buf);
+    BEGIN(INITIAL);
+}
+<COMMENT>.    {
+    if (comment_len + 1 < COMMENT_BUF_MAX) { comment_buf[comment_len++] = yytext[0]; comment_buf[comment_len] = '\0'; }
+}
+<COMMENT>\n   {
+    if (comment_len + 1 < COMMENT_BUF_MAX) { comment_buf[comment_len++] = '\n'; comment_buf[comment_len] = '\0'; }
+}
+
+<COMMENT><<EOF>>   {
+    printf("Block-comment (unclosed): /*%s\n", comment_buf);
+    fprintf(stderr, "Error: unclosed block comment\n");
+    return 0;
+}
 
   /* ----- Keywords (before identifiers; require non-id char after) ----- */
 "if"/[^a-zA-Z0-9_]      { printf("Keyword-if\n"); }
@@ -64,8 +86,6 @@
 .       { /* skip / report error */ }
 
 %%
-
-int yywrap(void) { return 1; }
 
 int main(int argc, char *argv[]) {
     if (argc > 1) {

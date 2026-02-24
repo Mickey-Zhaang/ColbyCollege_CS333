@@ -45,18 +45,23 @@ C compiler: MinGW-W64 x86_64-ucrt-posix-seh
 
 ## Extensions
 
-### Extension 1:
+### Extension 1: Exploration of TS (Third Language)
 
 **Description**
 
-**Output:**
-
-![Screenshot of c task 3](assets/ext1_output.png)
+Google Sites: https://sites.google.com/colby.edu/mickeys-cs333/home/project-2-ts
 
 ### Extension 2
 
 **Description**
 
-**Output:**
+Made the comments detection in our clite parser more robust
 
-1.  ![Screenshot of c task 3](assets/ext2_example1.png)
+1) Error handling for unclosed comments
+
+![Screenshot of c task 3](assets/extension1_error.png)
+
+2) Made comments visible by parser w/ identifier for type of comment
+
+![Screenshot of c task 3](assets/extension1_found.png)
+
