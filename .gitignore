@@ -15,3 +15,5 @@ a.out
 
 # Rust (Project2/RUST)
 target/
+
+__pycache__
