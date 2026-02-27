@@ -11,7 +11,7 @@
 #                       left      op=-     right
 #                         /                        \
 #                        /                          \
-#         ExpressionNode                  ExpressionNode                          
+#         ExpressionNode                  ExpressionNode
 #        left      op=-   right               left      op=+   right
 #        /                      |                    |                      \
 #     /                         |                    |                       \
@@ -27,14 +27,14 @@
 #     4
 #     7
 
-# Concrete syntax 
-# 
+# Concrete syntax
+#
 # Expression -> Primary { AddOp Primary }
 # Primary -> Integer | ( Expression )
 # AddOp -> + | -
 
 # Node types for Abstract Syntax Tree
-# 
+#
 # Expression = Expression left, string op, Expression right
 # Integer = int value
 import hw2_tokenizer as tokenizer
@@ -49,7 +49,7 @@ class ExpressionNode:
         print( whitespace + self.op )
         self.left.print( whitespace + "  " )
         self.right.print(  whitespace + "  " )
-        
+
 class IntegerNode:
     def __init__( self, value ):
         self.value = value
@@ -108,6 +108,6 @@ class Parser:
         self.ast = self.parseExpression()
 
 if __name__ == "__main__":
-    p = Parser( "3-23-(4+7)" )
+    p = Parser("1 - (2 + 3 + 4))")
     p.buildTree()
     p.ast.print( "" )
