@@ -1,0 +1,12 @@
+# Rust formatter rules (rustfmt) – used by rust-analyzer format-on-save
+# See: https://rust-lang.github.io/rustfmt/
+
+# Max line length before wrapping (default 100)
+max_width = 100
+
+# Spaces per indent level (default 4)
+tab_spaces = 4
+
+# Note: Semicolons are required by Rust for statements; the compiler/rust-analyzer
+# reports missing ones. rustfmt preserves correct syntax; use "Fix" / fix on save
+# to apply suggestions like adding semicolons.

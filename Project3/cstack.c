@@ -3,7 +3,7 @@
 #include "cstk.h"
 
 Stack *stk_create(int capacity) {
-    // allocate memory for a Stack struct (lowercase 'sizeof' in C)
+    // allocate memory for a Stack struct 
     Stack *s = malloc(sizeof(Stack));
     if (s == NULL) return NULL;
 
@@ -18,4 +18,73 @@ Stack *stk_create(int capacity) {
     s->top = arr;
     s->capacity = capacity;
     return s;
+}
+
+int stk_empty(Stack *s) {
+    if (s == NULL) return 1;
+    return s->top == s->data;
+}
+
+int stk_full(Stack *s) {
+    if (s == NULL) return 1;
+    return s->top >= s->data + s->capacity;
+}
+
+void stk_push(Stack *s, int val) {
+    if (s == NULL) return;
+    if (stk_full(s)) {
+        fprintf(stderr, "Warning: stack full, cannot push.\n");
+        return;
+    }
+    *s->top = val;  /* top is next free slot; write then advance */
+    s->top++;
+}
+
+int stk_peek(Stack *s) {
+    if (s == NULL || stk_empty(s)) {
+        fprintf(stderr, "Warning: cannot peek empty stack.\n");
+        return 0;
+    }
+    return *(s->top - 1);  /* top is past last element, so top-1 is top of stack */
+}
+
+int stk_pop(Stack *s) {
+    if (s == NULL || stk_empty(s)) {
+        fprintf(stderr, "Warning: cannot pop empty stack.\n");
+        return 0;
+    }
+    s->top--;
+    return *s->top;  /* back up, then read value at new top */
+}
+
+void stk_display(Stack *s, int reverse) {
+    if (s == NULL) return;
+    if (stk_empty(s)) {
+        printf("[]\n");
+        return;
+    }
+    /* reverse=1: LILO (data to top); reverse=0: LIFO (top-1 down to data) */
+    if (reverse) {
+        for (int *p = s->data; p < s->top; p++)
+            printf("%d ", *p);
+    } else {
+        for (int *p = s->top - 1; p >= s->data; p--)
+            printf("%d ", *p);
+    }
+    printf("\n");
+}
+
+void stk_destroy(Stack *s) {
+    if (s == NULL) return;
+    free(s->data);  /* free array first, then struct */
+    free(s);
+}
+
+Stack *stk_copy(Stack *s) {
+    if (s == NULL) return NULL;
+    Stack *copy = stk_create(s->capacity);
+    if (copy == NULL) return NULL;
+    for (int *p = s->data; p < s->top; p++)
+        stk_push(copy, *p);  /* same capacity, same order */
+    return copy;
 }

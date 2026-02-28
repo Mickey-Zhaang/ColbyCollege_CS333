@@ -1,6 +1,7 @@
 {
   "rust-analyzer.linkedProjects": [
-    "Project2/RUST/Cargo.toml"
+    "Project2/RUST/Cargo.toml",
+    "Project3/RUST/Cargo.toml"
   ],
   "clangd.enable": false,
   "C_Cpp.intelliSenseEngine": "default",
