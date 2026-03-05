@@ -1,0 +1,18 @@
+#include <stdio.h>
+
+// for txt files, use `gcc -xc -o program_name your_file.txt`
+
+float f;
+
+void func( float f ) {
+	printf( "f at mark1 %f\n", f );
+	f = 3.0;
+	printf( "f at mark2 %f\n", f );
+}
+
+int main( int argc, char *argv[]) {
+	f = 2.0;
+	printf( "f at mark0 %f\n", f);
+	func( f );
+	printf( "f at mark4 %f\n", f);
+}

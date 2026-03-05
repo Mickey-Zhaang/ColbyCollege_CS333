@@ -1,0 +1,53 @@
+# Executables (do not submit per assignment)
+*.exe
+*.out
+a.out
+
+# C / GCC
+*.o
+*.obj
+*.so
+*.a
+*.dll
+
+# Rust (Cargo)
+**/target/
+
+# Node / TypeScript
+node_modules/
+**/dist/
+*.tsbuildinfo
+npm-debug.log*
+.npm
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.Python
+venv/
+.venv/
+*.egg-info/
+.eggs/
+
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# IDE / editor (optional: remove .vscode if you want to ignore workspace settings)
+.idea/
+*.swp
+*.swo
+*~
+.vscode
+
+# Generated / build artifacts (uncomment if you regenerate these)
+# lex.yy.c
+# y.tab.c
+# y.tab.h
+
+# Misc
+*.log
+.env
+.env.*
