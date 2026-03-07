@@ -2,17 +2,25 @@
 
 // for txt files, use `gcc -xc -o program_name your_file.txt`
 
-float f;
+static int a = 0;
 
-void func( float f ) {
-	printf( "f at mark1 %f\n", f );
-	f = 3.0;
-	printf( "f at mark2 %f\n", f );
+void mystery( int a ) {
+	int b = 10;
+	for (int a = 0; a < 3; a++) {
+		b++;
+	}
+	a++;
+	printf( "mystery b: %i\n", b );	
+
 }
 
 int main( int argc, char *argv[]) {
-	f = 2.0;
-	printf( "f at mark0 %f\n", f);
-	func( f );
-	printf( "f at mark4 %f\n", f);
+	
+	printf( "main a: %i\n", a );
+	mystery(a);
+	printf( "main a: %i\n", a );
+	mystery(a);
+	printf( "main a: %i\n", a );
+
+	
 }
